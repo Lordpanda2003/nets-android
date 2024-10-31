@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 
 <!DOCTYPE resources [
-    <!ENTITY appName "Linphone">
+    <!ENTITY appName "NETS">
 ]>
 
 <resources xmlns:tools="http://schemas.android.com/tools">
@@ -74,11 +74,11 @@
     <!-- First screens user see when app is installed and started -->
     <string name="welcome_page_title">Bienvenue</string>
     <string name="welcome_page_subtitle">sur &appName;</string>
-    <string name="welcome_page_1_message">Une application de communication <b>sécurisée</b>, <b>open source</b> et <b>française</b>.</string>
+    <string name="welcome_page_1_message">Une application de communication <b>sécurisée</b> et <b>française</b>.</string>
     <string name="welcome_page_2_title">Sécurisé</string>
     <string name="welcome_page_2_message">Vos communications sont en sécurité grâce au <b>chiffrement de bout en bout</b>.</string>
-    <string name="welcome_page_3_title">Open source</string>
-    <string name="welcome_page_3_message">Une application open source et un <b>service gratuit</b> depuis <b>2001</b>.</string>
+    <string name="welcome_page_3_title">Support Fiable</string>
+    <string name="welcome_page_3_message">Une <b>assistance dédiée</b>, disponible à tout moment.</string>
 
     <!-- Generic toasts -->
     <string name="sip_address_copied_to_clipboard_toast">L\'adresse SIP a été copiée</string>

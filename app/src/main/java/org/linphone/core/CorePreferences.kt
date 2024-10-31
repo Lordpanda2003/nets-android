@@ -186,7 +186,7 @@ class CorePreferences @UiThread constructor(private val context: Context) {
 
     @get:WorkerThread @set:WorkerThread
     var themeMainColor: String
-        get() = config.getString("ui", "theme_main_color", "orange")!!
+        get() = config.getString("ui", "theme_main_color", "purple")!!
         set(value) {
             config.setString("ui", "theme_main_color", value)
         }
@@ -275,7 +275,9 @@ class CorePreferences @UiThread constructor(private val context: Context) {
 
     @get:WorkerThread
     val defaultDomain: String
-        get() = config.getString("app", "default_domain", "sip.linphone.org")!!
+        // ORIGINAL//
+        // get() = config.getString("app", "default_domain", "sip.linphone.org")!!
+        get() = config.getString("app", "default_domain", "192.168.0.3")!!
 
     @get:AnyThread
     val configPath: String

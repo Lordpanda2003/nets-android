@@ -2,11 +2,14 @@
 <resources>
     <style name="AppSplashScreenTheme" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/black</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/linphone_splashscreen</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/nets_mini_white</item>
         <item name="postSplashScreenTheme">@style/Theme.Linphone</item>
+        <!-- Commenting out the splashScreen Icon linphone -->
+        <!--
         <item name="android:windowSplashScreenBrandingImage">
             @drawable/linphone_splashscreen_branding
         </item>
+        -->
         <item name="android:windowSplashScreenBehavior">icon_preferred</item>
     </style>
 </resources>

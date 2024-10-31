@@ -46,6 +46,9 @@ class ConversationContactOrSuggestionModel @WorkerThread constructor(
 
     val sipUri = address.asStringUriOnly()
 
+    val numeroaffiche: String
+        get() = address.asStringUriOnlyOrdered().dropLast(12)
+
     val initials = AppUtils.getInitials(conversationSubject ?: name)
 
     val avatarModel = MutableLiveData<ContactAvatarModel>()

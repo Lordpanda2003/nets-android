@@ -164,10 +164,14 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 bind:ignore="UseAppTint" />
 
+            <!-- Commenting out encryption -->
             <include
                 android:id="@+id/call_media_encryption_info"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+
+                android:visibility="@{viewModel.callDuration > 0 ? View.VISIBLE : View.GONE, default=gone}"
+
                 layout="@layout/call_media_encryption_info"
                 bind:viewModel="@{viewModel}"
                 bind:callMediaEncryptionStatisticsClickListener="@{callMediaEncryptionStatisticsClickListener}"

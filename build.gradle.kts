@@ -6,3 +6,5 @@ plugins {
     alias(libs.plugins.googleGmsServices) apply false
     alias(libs.plugins.crashlytics) apply false
 }
+
+

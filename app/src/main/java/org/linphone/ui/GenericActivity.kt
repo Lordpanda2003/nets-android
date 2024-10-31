@@ -59,14 +59,17 @@ open class GenericActivity : AppCompatActivity() {
             "red" -> theme.applyStyle(R.style.Theme_LinphoneRed, true)
             "pink" -> theme.applyStyle(R.style.Theme_LinphonePink, true)
             "purple" -> theme.applyStyle(R.style.Theme_LinphonePurple, true)
-            else -> theme.applyStyle(R.style.Theme_Linphone, true)
+            else -> theme.applyStyle(R.style.Theme_LinphonePurple, true)
+
+            // ORIGINAL//
+            // else -> theme.applyStyle(R.style.Theme_Linphone, true)
         }
         return theme
     }
 
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableWindowSecureMode(corePreferences.enableSecureMode)
+        // enableWindowSecureMode(corePreferences.enableSecureMode)
 
         val nightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         val darkModeEnabled = corePreferences.darkMode

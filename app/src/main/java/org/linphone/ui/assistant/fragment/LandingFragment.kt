@@ -19,31 +19,24 @@
  */
 package org.linphone.ui.assistant.fragment
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.telephony.TelephonyManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.UiThread
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import org.linphone.LinphoneApplication.Companion.coreContext
 import org.linphone.LinphoneApplication.Companion.corePreferences
 import org.linphone.R
 import org.linphone.core.tools.Log
 import org.linphone.databinding.AssistantLandingFragmentBinding
-import org.linphone.ui.GenericActivity
 import org.linphone.ui.GenericFragment
 import org.linphone.ui.assistant.model.AcceptConditionsAndPolicyDialogModel
 import org.linphone.ui.assistant.viewmodel.AccountLoginViewModel
 import org.linphone.utils.DialogUtils
-import org.linphone.utils.PhoneNumberUtils
 
 @UiThread
 class LandingFragment : GenericFragment() {
@@ -69,84 +62,91 @@ class LandingFragment : GenericFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = viewModel
-        observeToastEvents(viewModel)
+//        binding.lifecycleOwner = viewLifecycleOwner
+//        binding.viewModel = viewModel
+//        observeToastEvents(viewModel)
+//
+//        binding.setBackClickListener {
+//            requireActivity().finish()
+//        }
+//
+//        binding.setRegisterClickListener {
+//            if (viewModel.conditionsAndPrivacyPolicyAccepted) {
+//                goToRegisterFragment()
+//            } else {
+//                showAcceptConditionsAndPrivacyDialog(goToAccountCreate = true)
+//            }
+//        }
+//
+//        binding.setQrCodeClickListener {
+//            val action = LandingFragmentDirections.actionLandingFragmentToQrCodeScannerFragment()
+//            findNavController().navigate(action)
+//        }
+//
+//        binding.setThirdPartySipAccountLoginClickListener {
+//            if (viewModel.conditionsAndPrivacyPolicyAccepted) {
+//                goToLoginThirdPartySipAccountFragment(false)
+//            } else {
+//                showAcceptConditionsAndPrivacyDialog(goToThirdPartySipAccountLogin = true)
+//            }
+//        }
+//
+//        binding.setForgottenPasswordClickListener {
+//            val url = getString(R.string.web_platform_forgotten_password_url)
+//            try {
+//                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+//                startActivity(browserIntent)
+//            } catch (ise: IllegalStateException) {
+//                Log.e(
+//                    "$TAG Can't start ACTION_VIEW intent for URL [$url], IllegalStateException: $ise"
+//                )
+//            }
+//        }
+//
+//        viewModel.showPassword.observe(viewLifecycleOwner) {
+//            lifecycleScope.launch {
+//                delay(50)
+//                binding.password.setSelection(binding.password.text?.length ?: 0)
+//            }
+//        }
+//
+//        viewModel.accountLoggedInEvent.observe(viewLifecycleOwner) {
+//            it.consume {
+//                Log.i("$TAG Account successfully logged-in, leaving assistant")
+//                requireActivity().finish()
+//            }
+//        }
+//
+//        viewModel.accountLoginErrorEvent.observe(viewLifecycleOwner) {
+//            it.consume { message ->
+//                (requireActivity() as GenericActivity).showRedToast(
+//                    message,
+//                    R.drawable.warning_circle
+//                )
+//            }
+//        }
+//
+//        viewModel.skipLandingToThirdPartySipAccountEvent.observe(viewLifecycleOwner) {
+//            it.consume {
+//                goToLoginThirdPartySipAccountFragment(true)
+//            }
+//        }
+//
+//        val telephonyManager = requireContext().getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+//        val countryIso = telephonyManager.networkCountryIso
+//        coreContext.postOnCoreThread {
+//            val dialPlan = PhoneNumberUtils.getDeviceDialPlan(countryIso)
+//            if (dialPlan != null) {
+//                viewModel.internationalPrefix.postValue(dialPlan.countryCallingCode)
+//                viewModel.internationalPrefixIsoCountryCode.postValue(dialPlan.isoCountryCode)
+//            }
+//        }
 
-        binding.setBackClickListener {
-            requireActivity().finish()
-        }
-
-        binding.setRegisterClickListener {
-            if (viewModel.conditionsAndPrivacyPolicyAccepted) {
-                goToRegisterFragment()
-            } else {
-                showAcceptConditionsAndPrivacyDialog(goToAccountCreate = true)
-            }
-        }
-
-        binding.setQrCodeClickListener {
-            val action = LandingFragmentDirections.actionLandingFragmentToQrCodeScannerFragment()
-            findNavController().navigate(action)
-        }
-
-        binding.setThirdPartySipAccountLoginClickListener {
-            if (viewModel.conditionsAndPrivacyPolicyAccepted) {
-                goToLoginThirdPartySipAccountFragment(false)
-            } else {
-                showAcceptConditionsAndPrivacyDialog(goToThirdPartySipAccountLogin = true)
-            }
-        }
-
-        binding.setForgottenPasswordClickListener {
-            val url = getString(R.string.web_platform_forgotten_password_url)
-            try {
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                startActivity(browserIntent)
-            } catch (ise: IllegalStateException) {
-                Log.e(
-                    "$TAG Can't start ACTION_VIEW intent for URL [$url], IllegalStateException: $ise"
-                )
-            }
-        }
-
-        viewModel.showPassword.observe(viewLifecycleOwner) {
-            lifecycleScope.launch {
-                delay(50)
-                binding.password.setSelection(binding.password.text?.length ?: 0)
-            }
-        }
-
-        viewModel.accountLoggedInEvent.observe(viewLifecycleOwner) {
-            it.consume {
-                Log.i("$TAG Account successfully logged-in, leaving assistant")
-                requireActivity().finish()
-            }
-        }
-
-        viewModel.accountLoginErrorEvent.observe(viewLifecycleOwner) {
-            it.consume { message ->
-                (requireActivity() as GenericActivity).showRedToast(
-                    message,
-                    R.drawable.warning_circle
-                )
-            }
-        }
-
-        viewModel.skipLandingToThirdPartySipAccountEvent.observe(viewLifecycleOwner) {
-            it.consume {
-                goToLoginThirdPartySipAccountFragment(true)
-            }
-        }
-
-        val telephonyManager = requireContext().getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-        val countryIso = telephonyManager.networkCountryIso
-        coreContext.postOnCoreThread {
-            val dialPlan = PhoneNumberUtils.getDeviceDialPlan(countryIso)
-            if (dialPlan != null) {
-                viewModel.internationalPrefix.postValue(dialPlan.countryCallingCode)
-                viewModel.internationalPrefixIsoCountryCode.postValue(dialPlan.isoCountryCode)
-            }
+        // Directly navigate to the third-party SIP login fragment
+        if (viewModel.conditionsAndPrivacyPolicyAccepted) {
+            goToLoginThirdPartySipAccountFragment(true)
+        } else {
+            goToLoginThirdPartySipAccountFragment(true)
         }
     }
 
